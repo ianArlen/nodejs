@@ -1,25 +1,43 @@
 const express = require('express');
-
+const test = require('./routes/test');
+//const user = require('./routes/user);
 const app = express();
 
 
+//get obtener un usuario
+//get obtener todos los usuarios
+//post guardar un usuario
+//put actualizar informacion de un usuario
+//delete de borrar un usuaio
+
 app.use(express.json({extended:false}));
 
-app.get('/', (req,res) => {
+
+app.use('/pruebita',test);
+
+app.get('/', async (req,res) => {
   res.send('Holiwi bebe')
 })
 
-app.get('/test',(req,res) => {
+app.get('/test',async (req,res) => {
   res.json({
     mensaje : 'Hola guapo',
     mensaje2: 'aver tu senos bebe'
   })
 })
+
+/*
+const isNumber = (num) => {
+  return (typeof num === 'number') ? true: false;
+}
+*/
+
 function isNumber(num) {
     if (typeof num == 'number')    return true
     return false
 }
 
+/** usar comparacion === en vez de ==*/
 function typeOperation(operator, num) {
     if (operator == 'sin')          return  Math.sin(num)
     else if (operator == 'cos')     return Math.cos(num)
@@ -32,7 +50,7 @@ function typeOperation(operator, num) {
 }
 
 
-app.post('/sumita', (req,res) => {
+app.post('/sumita',async (req,res) => {
   const body = req.body;
   console.log(body);
   const {numero1,numero2} = body;
